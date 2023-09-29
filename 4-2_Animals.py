@@ -11,4 +11,3 @@ for animal in animals:
     print(animal)
 
 print('All these animals are very fast')
-print('Test')
