@@ -17,7 +17,7 @@ cities = {
     },
     'Lisbon':{
         'country':'Portugal',
-        'population':'3m',
+        'population':'3m', 
         'fact':'Lisbon is one of the oldest cities of Europe',
     },
 }
