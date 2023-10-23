@@ -46,13 +46,13 @@ class Exercise():
 
     def _check_events(self):
         for event in pygame.event.get():
-            if event == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:
                 self._check_keydown(event)
-            if event == pygame.KEYUP:
+            if event.type == pygame.KEYUP:
                 self._check_keyup(event)
     
     def _check_keydown(self, event):
-        if event == pygame.K_q:
+        if event.key == pygame.K_q:
             sys.exit()
 
     def _check_keyup(self, event):
@@ -65,7 +65,8 @@ class Exercise():
                 self.raindrops.remove(drop)
                 need_new_row = True
         if need_new_row:
-            self._new_row()        
+            self._new_row()
+            need_new_row = False    
     
     def _new_row(self):
         drop = Raindrop(self)
@@ -82,7 +83,7 @@ class Exercise():
 
     def check_edges(self, drop):
         screen_rect = self.screen.get_rect()
-        return (drop.rect.x >= screen_rect.right) or (drop.rect.y >= screen_rect.bottom)
+        return (drop.rect.left >= screen_rect.right) or (drop.rect.top >= screen_rect.bottom)
 
     def _update_screen(self):
         self.screen.fill(self.settings.color)
