@@ -30,7 +30,7 @@ def get_dictionary(path):
         dictionary = {}
     return dictionary
 
-def get_new_user(path, dictionary)
+def get_new_user(path, dictionary):
     prompt_user(dictionary)
     write_dictionary(path, dictionary)
 

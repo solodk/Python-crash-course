@@ -29,27 +29,41 @@ class Settings:
 
         # Difficulties
         self.difficulty_list = ['Easy', 'Normal', 'Hard']
-        self.difficulty_scale = 1
+
+        # Score
+        self.score_scale = 1.5
 
         self.initialize_dynamic_settings()
 
-    def initialize_dynamic_settings(self, mode='Easy'):
+    def initialize_dynamic_settings(self):
         """
         Initialize settings that change throughout the game.
         """
-        self.difficulty_scale += self.difficulty_list.index(mode)
-        
-        self.ship_speed = 15 * self.difficulty_scale
-        self.bullet_speed = 20.0 * self.difficulty_scale
-        self.alien_speed = 10.0 * self.difficulty_scale
+        self.ship_speed = 15
+        self.bullet_speed = 20.0
+        self.alien_speed = 10.0
 
         # fleet_direction of 1 represents right: -1 represents left.
         self.fleet_direction = 1
 
+        # Scoring settings
+        self.alien_points = 50
+
+    def set_difficulty(self, mode):
+        difficulty_scale = self.difficulty_list.index(mode)/10 + 1
+
+        self.ship_speed *= difficulty_scale
+        self.bullet_speed *= difficulty_scale
+        self.alien_speed *= difficulty_scale
+
+        self.alien_points *= difficulty_scale
+
     def increase_speed(self):
         """
-        Increase speed settings.
+        Increase speed settings and alien point values.
         """
         self.ship_speed *= self.speedup_scale
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
+
+        self.alien_points = int(self.alien_points * self.score_scale)
